@@ -1,0 +1,77 @@
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="./static/css/takePicture.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/getPicture.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/testLogin.css">
+    <script src="./static/js/jquery-3.1.1.min.js"></script>
+    <script src="./static/js/model_pca_20_mosse.js"></script>
+    <script src="./static/js/jquery.cookie.js"></script>
+    <script src="./static/js/face_deformer.js"></script>
+    <script src="./static/js/clmtrackr.js"></script>
+    <script src="./static/js/testLogin.js"></script>
+    <script src="./static/js/getPicture.js"></script>
+    <script src="./static/js/takePicture.js"></script>
+  </head>
+
+  <body>
+    <nav id="nav">
+      <ul>
+        <li id="step1" class="step_label">Image Analysis</li>
+        <li class="nav_vec">></li>
+        <li id="step2" class="step_label">Model Generate</li>
+        <li class="nav_vec">></li>
+        <li id="step3" class="step_label">Test Login</li>
+      </ul>
+    </nav>
+
+    <div id="testLogin">
+      <form method="post" action="http://192.168.1.6:9000/face_result" enctype='multipart/form-data' id="LoginPost">
+        <h1 id="err_message"></h1>
+        <ul>
+          <li><label>Test Login
+            <input type="file" id="login_file" accept="image/*;capture=camera" name="login_file" class="login_file">
+          </label></li>
+          <input type="hidden" name="Solaris_model_id">
+          <input type="hidden" name="login_base64_file">
+          <li id="login_img"></li>
+          <li><div id="Login">Login</div></li>
+          <canvas id="login_img_mask" class="hidden_canvas"></canvas>
+          <canvas id="login_post_img_canvas" class="hidden_canvas"></canvas>
+          <canvas id="once_face_canvas" class="hidden_canvas"></canvas>
+        </ul>
+      </form>
+    </div>
+
+    <div id="getPicture">
+      <div id="loading">
+        <div id="load_text"><h1>Loading...</h1></div>
+        <div id="loadingLine"></div>
+      </div>
+      <div id="canvasBox">
+        <canvas id="canvas" width="320" height="360" class="view"></canvas>
+        <canvas id="model" class="view"></canvas>
+        <canvas id="backView" width="320" height="360"></canvas>
+        <canvas id="resizeView" width="120" height="135"></canvas>
+      </div>
+      <div id="startButton">START</div>
+    </div>
+
+    <div id="formBox">
+      <form method="post" action="http://192.168.1.6:8000/getPicture" enctype='multipart/form-data' id="facePost">
+        <h1 id="message"></h1>
+        <ul>
+          <li><label>Take a picture
+            <input type="file" id="file" accept="image/*;capture=camera" name="faceImg" class="filer">
+          </label></li>
+          <li id="img"></li>
+          <li><input type="text" name="user_name" placeholder="USER NAME" class="user_name"></li>
+          <li><div id="send_button">Send</div></li>
+        </ul>
+      </form>
+    </div>
+
+  </body>
+
+</html>
